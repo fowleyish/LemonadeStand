@@ -13,7 +13,7 @@ namespace LemonadeStand
         {
             get
             {
-                return Money;
+                return money;
             }
             set
             {
@@ -30,7 +30,10 @@ namespace LemonadeStand
 
         // Member methods
 
-
+        public void PayMoneyForItems(double transactionAmount)
+        {
+            money -= transactionAmount;
+        }
 
 
     }

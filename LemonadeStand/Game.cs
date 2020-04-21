@@ -47,15 +47,30 @@ namespace LemonadeStand
             {
                 UI.WelcomeToANewDay(currentDay);
                 UI.DisplayInventory(player.inventory.lemons.Count, player.inventory.sugarCubes.Count, player.inventory.iceCubes.Count, player.inventory.cups.Count, player.wallet.Money);
-                store.SellItems();
+                store.SellItems(player);
                 player.SetRecipe();
                 StartDay();
-                ShowSales();
-                CalculateSatisfaction();
-                CalculateProfits();
-                UI.EndDay();
+                //ShowSales();
+                //CalculateSatisfaction();
+                //CalculateProfits();
+                //UI.EndDay();
                 currentDay++;
             }
+        }
+
+        public void StartDay()
+        {
+            // Calculate recipe effectiveness
+            List<Customer> potentialCustomers = days[currentDay].customers;
+            while (true)
+            {
+
+            }
+            double lemonsToSugarRatio;
+            double dayToIceRatio;
+            double recipeScore;
+            // While I have ingredients...
+               // Loop through each customer to see if they will buy
         }
 
 

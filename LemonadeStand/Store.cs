@@ -57,7 +57,7 @@ namespace LemonadeStand
                 if (player.wallet.Money >= transactionAmount)
                 {
                     PerformTransaction(player.wallet, transactionAmount);
-                    player.inventory.AddToInventory(item);
+                    player.inventory.AddToInventory(item, amountToPurchase);
                 }
             }
         }

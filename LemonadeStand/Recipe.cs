@@ -31,10 +31,10 @@ namespace LemonadeStand
             return amount;
         }
 
-        public int SetPricePerCup()
+        public double SetPricePerCup()
         {
             Console.Write("How much will you charge per cup?: ");
-            int price = int.Parse(Console.ReadLine());
+            double price = double.Parse(Console.ReadLine());
             return price;
         }
 

@@ -21,13 +21,15 @@ namespace LemonadeStand
             this.name = name;
             inventory = new Inventory();
             wallet = new Wallet();
-            recipe = new Recipe();
             pitcher = new Pitcher();
         }
         
         // Member methods
 
-
+        public void SetRecipe()
+        {
+            recipe = new Recipe();
+        }
 
     }
 }

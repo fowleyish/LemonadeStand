@@ -24,9 +24,30 @@ namespace LemonadeStand
 
         // Member methods
 
-        public void AddToInventory(int items)
+        public void AddToInventory(string item, int amount)
         {
-
+            for (int i = 0; i < amount; i++)
+            {
+                switch (item)
+                {
+                    case "lemons":
+                        Lemon lemon = new Lemon();
+                        lemons.Add(lemon);
+                        break;
+                    case "sugar cubes":
+                        SugarCube sugarCube = new SugarCube();
+                        sugarCubes.Add(sugarCube);
+                        break;
+                    case "ice cubes":
+                        IceCube iceCube = new IceCube();
+                        iceCubes.Add(iceCube);
+                        break;
+                    case "cups":
+                        Cup cup = new Cup();
+                        cups.Add(cup);
+                        break;
+                }
+            }
         }
 
     }
