@@ -10,6 +10,7 @@ namespace LemonadeStand
         // Member variables
         public int cupsLeftInPitcher;
 
+
         // Constructor
         public Pitcher()
         {

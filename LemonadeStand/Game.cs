@@ -60,20 +60,19 @@ namespace LemonadeStand
 
         public void StartDay()
         {
-            // Calculate recipe effectiveness
             List<Customer> potentialCustomers = days[currentDay].customers;
-            while (true)
+            double recipeQuality = player.recipe.recipeQuality;
+            player.MakeNewPitcher();
+            // Loop through each customer
+            foreach (var customer in potentialCustomers)
             {
-
+                if (customer.plausibility + recipeQuality >= 5)
+                {
+                    player.SellCup();
+                }
+                // check if there are any pitchers left.....
+                // add in somewhere a factor for whether the price is reasonable (on recipe class)
             }
-            double lemonsToSugarRatio;
-            double dayToIceRatio;
-            double recipeScore;
-            // While I have ingredients...
-               // Loop through each customer to see if they will buy
         }
-
-
-
     }
 }

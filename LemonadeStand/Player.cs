@@ -21,7 +21,6 @@ namespace LemonadeStand
             this.name = name;
             inventory = new Inventory();
             wallet = new Wallet();
-            pitcher = new Pitcher();
         }
         
         // Member methods
@@ -29,6 +28,41 @@ namespace LemonadeStand
         public void SetRecipe()
         {
             recipe = new Recipe();
+        }
+
+        public void MakeNewPitcher()
+        {
+            if (inventory.lemons.Count >= recipe.amountOfLemons && 
+                inventory.sugarCubes.Count >= recipe.amountOfSugarCubes &&
+                inventory.iceCubes.Count >= recipe.amountOfIceCubes )
+            {
+                for (int i = 0; i < recipe.amountOfLemons; i++)
+                {
+                    inventory.lemons.RemoveAt(0);
+                }
+                for (int i = 0; i < recipe.amountOfSugarCubes; i++)
+                {
+                    inventory.sugarCubes.RemoveAt(0);
+                }
+                for (int i = 0; i < recipe.amountOfIceCubes; i++)
+                {
+                    inventory.iceCubes.RemoveAt(0);
+                }
+                pitcher = new Pitcher();
+            }
+        }
+
+        public void SellCup()
+        {
+            if ( pitcher.cupsLeftInPitcher > 0 )
+            {
+                pitcher.cupsLeftInPitcher--;
+                wallet.Money += recipe.pricePerCup;
+            }
+            else
+            {
+                MakeNewPitcher();
+            }
         }
 
     }
