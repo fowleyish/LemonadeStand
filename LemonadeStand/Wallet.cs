@@ -9,12 +9,22 @@ namespace LemonadeStand
 
         // Member variables
         private double money;
-        public double Money;
+        public double Money
+        {
+            get
+            {
+                return Money;
+            }
+            set
+            {
+                money = value;
+            }
+        }
 
         // Constructor
         public Wallet()
         {
-
+            money = 20;
         }
 
 

@@ -16,11 +16,27 @@ namespace LemonadeStand
         // Constructor 
         public Recipe()
         {
-
+            amountOfLemons = SetQuantityPerPitcher("LEMONS");
+            amountOfSugarCubes = SetQuantityPerPitcher("SUGAR CUBES");
+            amountOfIceCubes = SetQuantityPerPitcher("ICE CUBES");
+            pricePerCup = SetPricePerCup();
         }
 
         // Member methods
 
+        public int SetQuantityPerPitcher(string ingredient)
+        {
+            Console.Write("How many {0} per pitcher?: ", ingredient);
+            int amount = int.Parse(Console.ReadLine());
+            return amount;
+        }
+
+        public int SetPricePerCup()
+        {
+            Console.Write("How much will you charge per cup?: ");
+            int price = int.Parse(Console.ReadLine());
+            return price;
+        }
 
     }
 }

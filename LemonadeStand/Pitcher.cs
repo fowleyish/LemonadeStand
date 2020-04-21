@@ -13,7 +13,7 @@ namespace LemonadeStand
         // Constructor
         public Pitcher()
         {
-
+            cupsLeftInPitcher = 8;
         }
 
         // Member methods

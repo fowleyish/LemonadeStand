@@ -16,12 +16,18 @@ namespace LemonadeStand
         // Constructor
         public Inventory()
         {
-
+            lemons = new List<Lemon>();
+            iceCubes = new List<IceCube>();
+            cups = new List<Cup>();
+            sugarCubes = new List<SugarCube>();
         }
 
         // Member methods
 
+        public void AddToInventory(int items)
+        {
 
+        }
 
     }
 }

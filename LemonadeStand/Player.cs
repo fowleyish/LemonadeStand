@@ -14,10 +14,15 @@ namespace LemonadeStand
         public Recipe recipe;
         public Pitcher pitcher;
 
-        // Constructor
-        public Player()
-        {
 
+        // Constructor
+        public Player(string name)
+        {
+            this.name = name;
+            inventory = new Inventory();
+            wallet = new Wallet();
+            recipe = new Recipe();
+            pitcher = new Pitcher();
         }
         
         // Member methods
