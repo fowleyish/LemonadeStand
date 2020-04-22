@@ -8,7 +8,7 @@ namespace LemonadeStand
     {
 
         // Member variables
-        public int plausibility;
+        public int plausibility; // random number 1-3 to determine whether the customer is in the mood for buying a cup already
 
         // Constructor
         public Customer()
@@ -18,6 +18,7 @@ namespace LemonadeStand
 
         // Member methods
 
+        // Sets base plausibility of this customer buying a cup (max 3/10 for final calculation in Game())
         public int GetPlausibility()
         {
             Random r = new Random();

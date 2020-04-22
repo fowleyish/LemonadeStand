@@ -8,6 +8,7 @@ namespace LemonadeStand
     static class UI
     {
 
+        // Welcome method to display gameplay rules to the user
         public static void Welcome()
         {
             Console.Clear();
@@ -24,6 +25,7 @@ namespace LemonadeStand
             Console.ReadLine();
         }
 
+        // Displays day value and weather details at the start of each day
         public static void WelcomeToANewDay(int day, int temp, string sky)
         {
             Console.Clear();
@@ -32,6 +34,7 @@ namespace LemonadeStand
             LineBreak(1);
         }
 
+        // Displays current inventory to the user
         public static void DisplayInventory(int lemons, int sugar, int ice, int cups, double money)
         {
             Console.WriteLine("INVENTORY");
@@ -45,6 +48,7 @@ namespace LemonadeStand
             LineBreak(3);
         }
 
+        // Prompts user for purchase quantities of items in the Store()
         public static int GetNumberOfItems(string itemsToGet)
         {
             bool userInputIsAnInteger = false;
@@ -60,6 +64,7 @@ namespace LemonadeStand
             return quantityOfItem;
         }
 
+        // Produces an end-of-day report; invoked near the end of each day in Days<T>
         public static void EndDay(int potentialCustomers, int buyingCustomers, double startingMoney, double profits, double moneyAfterPurchases, int recipeQuality)
         {
             Console.Clear();
@@ -74,6 +79,7 @@ namespace LemonadeStand
             Console.ReadLine();
         }
 
+        // Displays profits for each day; outputs in end-of-day report
         public static void GetProfits(double starting, double leftover, double profits)
         {
             double outcome = starting - ( starting - leftover ) + profits;
@@ -88,6 +94,7 @@ namespace LemonadeStand
             }
         }
 
+        // Accepts recipe quality to share feedback on its popularity among customers
         public static void GetRecipeFeedback(int quality)
         {
             switch (quality)
@@ -110,6 +117,7 @@ namespace LemonadeStand
             }
         }
 
+        // LineBreak() method for use throughout UI()
         public static void LineBreak(int num)
         {
             for (int i = 0; i < num; i++)
@@ -118,6 +126,7 @@ namespace LemonadeStand
             }
         }
 
+        // Final end-game status report; prompts user if they would like to play again
         public static void EndGame(double money)
         {
             Console.Clear();

@@ -16,7 +16,7 @@ namespace LemonadeStand
         {
             temperature = GetTemp();
             weatherConditions = new List<string>
-            {
+            { // Weighted list of possible weather conditions
                 "clear",
                 "clear",
                 "clear",
@@ -40,6 +40,7 @@ namespace LemonadeStand
             return r.Next(55, 100);
         }
 
+        // Returns a random weather condition from weatherConditions<T>
         public string GetCondition()
         {
             Random r = new Random();

@@ -24,6 +24,7 @@ namespace LemonadeStand
 
         // Member methods
 
+        // Method referenced from Store(); accepts type of item and quantity and adds quantity of item to the corresponding list
         public void AddToInventory(string item, int amount)
         {
             for (int i = 0; i < amount; i++)

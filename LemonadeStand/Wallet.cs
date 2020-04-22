@@ -9,7 +9,7 @@ namespace LemonadeStand
 
         // Member variables
         private double money;
-        public double Money
+        public double Money // Accessor to private money; includes get and set
         {
             get
             {
@@ -24,12 +24,14 @@ namespace LemonadeStand
         // Constructor
         public Wallet()
         {
+            // User starts with $20
             money = 20;
         }
 
 
         // Member methods
 
+        // Invoked in Store() to pay for items purchased
         public void PayMoneyForItems(double transactionAmount)
         {
             money -= transactionAmount;

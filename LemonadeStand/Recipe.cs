@@ -28,6 +28,7 @@ namespace LemonadeStand
 
         // Member methods
 
+        // This method is called in the Recipe() constructor to set quantities of ingredients per pitcher per ingredient type
         public int SetQuantityPerPitcher(string ingredient)
         {
             Console.Write("How many {0} per pitcher?: ", ingredient);
@@ -35,6 +36,8 @@ namespace LemonadeStand
             return amount;
         }
 
+        // Sets a cup asking price - THIS IS AN EXAMPLE OF THE SINGLE RESPONSIBILITY PRINCIPLE. The single, sole purpose of this function
+        // is to set a price for all cups in the current recipe.
         public double SetPricePerCup()
         {
             Console.Write("How much will you charge per cup?: ");
@@ -42,6 +45,7 @@ namespace LemonadeStand
             return price;
         }
 
+        // Uses a range to assign a score to the recipe based on ratios of ingredients per pitcher
         public int GetRecipeQuality()
         {
             double lemonsToSugar = amountOfLemons / amountOfSugarCubes;
@@ -69,12 +73,5 @@ namespace LemonadeStand
             }
             return quality;
         }
-
-        //public double CalculateReasonablePrice(int quality)
-        //{
-        //    double reasonablePrice = quality / 10;
-        //    return reasonablePrice;
-        //}
-
     }
 }

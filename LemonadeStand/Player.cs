@@ -25,13 +25,16 @@ namespace LemonadeStand
         
         // Member methods
 
+        // Create a new recipe each day
         public void SetRecipe()
         {
             recipe = new Recipe();
         }
 
+        // Try to make a pitcher...
         public void MakeNewPitcher()
         {
+            // ...if there are enough ingredients...
             if (inventory.lemons.Count >= recipe.amountOfLemons &&
                 inventory.sugarCubes.Count >= recipe.amountOfSugarCubes &&
                 inventory.iceCubes.Count >= recipe.amountOfIceCubes)
@@ -48,25 +51,29 @@ namespace LemonadeStand
                 {
                     inventory.iceCubes.RemoveAt(0);
                 }
-                pitcher = new Pitcher();
+                pitcher = new Pitcher(); // ...make a new pitcher after deducing the ingredients from my inventory
             }
             else
-            {
+            { // ...otherwise, set pitcher to null, thus halting sales for the day in Game()
                 pitcher = null;
             }
         }
 
+        // Every time a cup is sold...
         public void SellCup()
         {
+            // Check if I even have enough cups left in my pitcher...
             if ( pitcher.cupsLeftInPitcher > 0 )
             {
-                pitcher.cupsLeftInPitcher--;
-                wallet.Money += recipe.pricePerCup;
-                inventory.cups.RemoveAt(0);
+                pitcher.cupsLeftInPitcher--; // Pour one cup from my pitcher
+                wallet.Money += recipe.pricePerCup; // Add money to my wallet
+                inventory.cups.RemoveAt(0); // Get rid of a cup
             }
+            // If I don't have enough cups left, make a new pitcher and sell a cup
             else
             {
                 MakeNewPitcher();
+                SellCup();
             }
         }
 

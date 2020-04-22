@@ -17,10 +17,12 @@ namespace LemonadeStand
         // Constructor
         public Store()
         {
+            // Set prices per ingredient
             pricePerLemon = 0.07;
             pricePerSugarCube = 0.05;
             pricePerCup = 0.10;
             pricePerIceCube = 0.06;
+            // Create a stock List<T>
             stock = new List<string>()
             {
                 "lemons",
@@ -32,7 +34,7 @@ namespace LemonadeStand
 
         // Member methods
 
-
+        // Sells items to Player() who pays money for items and adds purchased items to inventory
         public void SellItems(Player player)
         {
             DisplayPrices();
@@ -74,9 +76,10 @@ namespace LemonadeStand
             wallet.PayMoneyForItems(transactionAmount);
         }
 
+        // UI method to display prices on items
         private void DisplayPrices()
         {
-            UI.LineBreak(2);
+            UI.LineBreak(1);
             Console.WriteLine("STORE PRICES");
             Console.WriteLine("============");
             UI.LineBreak(1);
