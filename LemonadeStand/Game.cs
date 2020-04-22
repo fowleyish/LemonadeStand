@@ -43,17 +43,20 @@ namespace LemonadeStand
         public void StartGame()
         {
             UI.Welcome();
-            while ( currentDay < 8 )
+            while ( currentDay < days.Count + 1 )
             {
                 UI.WelcomeToANewDay(currentDay, days[currentDay - 1].weather.temperature, days[currentDay - 1].weather.sky);
+                double startingMoney = player.wallet.Money;
                 UI.DisplayInventory(player.inventory.lemons.Count, player.inventory.sugarCubes.Count, player.inventory.iceCubes.Count, player.inventory.cups.Count, player.wallet.Money);
                 store.SellItems(player);
+                double moneyAfterPurchases = player.wallet.Money;
                 UI.DisplayInventory(player.inventory.lemons.Count, player.inventory.sugarCubes.Count, player.inventory.iceCubes.Count, player.inventory.cups.Count, player.wallet.Money);
                 player.SetRecipe();
                 SellLemonade();
-                UI.EndDay();
+                UI.EndDay(days[currentDay - 1].customers.Count, days[currentDay - 1].buyingCustomers, startingMoney, days[currentDay - 1].moneyMade, moneyAfterPurchases, player.recipe.recipeQuality);
                 currentDay++;
             }
+            // UI.EndGame();
         }
 
         public void SellLemonade()
@@ -79,6 +82,8 @@ namespace LemonadeStand
                     if (customer.plausibility + recipeQuality + priceScore >= 6)
                     {
                         player.SellCup();
+                        days[currentDay - 1].moneyMade += player.recipe.pricePerCup;
+                        days[currentDay - 1].buyingCustomers++;
                     }
                     if (player.pitcher.cupsLeftInPitcher == 0) 
                     {

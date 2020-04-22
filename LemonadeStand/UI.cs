@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
 using System.Text;
 
 namespace LemonadeStand
@@ -60,16 +61,60 @@ namespace LemonadeStand
             return quantityOfItem;
         }
 
-        public static void EndDay(int potentialCustomers, int buyingCustomers, int profits, int recipeQuality)
+        public static void EndDay(int potentialCustomers, int buyingCustomers, double startingMoney, double profits, double moneyAfterPurchases, int recipeQuality)
         {
+            Console.Clear();
+            Console.WriteLine("END OF DAY REPORT");
+            Console.WriteLine("- Of {0} potential customers, you sold lemonade to {1} of them.", potentialCustomers, buyingCustomers);
+            Console.WriteLine("- You started today with ${0} and made ${1} in purchases from the store.", startingMoney.ToString("0.##"), moneyAfterPurchases.ToString("0.##"));
+            Console.WriteLine("- You made {0} in sales.", profits.ToString("0.##"));
+            GetProfits(startingMoney, moneyAfterPurchases, profits);
+            GetRecipeFeedback(recipeQuality);
+            Console.Write("Press Enter to continue");
+            Console.ReadLine();
+        }
 
+        public static void GetProfits(double starting, double leftover, double profits)
+        {
+            double outcome = starting - ( starting - leftover ) + profits;
+            double x = outcome - starting;
+            if (x < 0)
+            {
+                Console.WriteLine("- Unfortunately, you LOST ${0} today.", Math.Abs(x).ToString("0.##"));
+            }
+            else
+            {
+                Console.WriteLine("- Congrats! You earned ${0} today!", x.ToString("0.##"));
+            }
+        }
+
+        public static void GetRecipeFeedback(int quality)
+        {
+            switch (quality)
+            {
+                case 5:
+                    Console.WriteLine("- Generally, people loved your recipe!");
+                    break;
+                case 4:
+                    Console.WriteLine("- Generally, people enjoyed your recipe.");
+                    break;
+                case 3:
+                    Console.WriteLine("- Generally, people were okay with your recipe.");
+                    break;
+                case 2:
+                    Console.WriteLine("- Generally, people disliked your recipe.");
+                    break;
+                case 1:
+                    Console.WriteLine("- Generally, people hated your recipe!");
+                    break;
+            }
         }
 
         public static void LineBreak(int num)
         {
             for (int i = 0; i < num; i++)
             {
-                Console.WriteLine("");
+                Console.WriteLine();
             }
         }
 
