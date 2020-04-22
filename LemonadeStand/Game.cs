@@ -54,14 +54,15 @@ namespace LemonadeStand
                 player.SetRecipe();
                 SellLemonade();
                 UI.EndDay(days[currentDay - 1].customers.Count, days[currentDay - 1].buyingCustomers, startingMoney, days[currentDay - 1].moneyMade, moneyAfterPurchases, player.recipe.recipeQuality);
+                player.inventory.iceCubes.Clear();
                 currentDay++;
             }
-            // UI.EndGame();
+            UI.EndGame(player.wallet.Money);
         }
 
         public void SellLemonade()
         {
-            List<Customer> potentialCustomers = days[currentDay].customers;
+            List<Customer> potentialCustomers = days[currentDay - 1].customers;
             double recipeQuality = player.recipe.recipeQuality;
             double reasonablePrice = recipeQuality / 10;
             int priceScore;

@@ -8,7 +8,6 @@ namespace LemonadeStand
     {
 
         // Member variables
-        public string name;
 
         // Constructor
         public Ingredient()

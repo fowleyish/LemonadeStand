@@ -17,10 +17,10 @@ namespace LemonadeStand
         // Constructor
         public Store()
         {
-            pricePerLemon = 0.12;
-            pricePerSugarCube = 0.10;
-            pricePerCup = 0.15;
-            pricePerIceCube = 0.6;
+            pricePerLemon = 0.07;
+            pricePerSugarCube = 0.05;
+            pricePerCup = 0.10;
+            pricePerIceCube = 0.06;
             stock = new List<string>()
             {
                 "lemons",
@@ -35,6 +35,7 @@ namespace LemonadeStand
 
         public void SellItems(Player player)
         {
+            DisplayPrices();
             foreach (string item in stock)
             {
                 int amountToPurchase = UI.GetNumberOfItems(item);
@@ -71,6 +72,19 @@ namespace LemonadeStand
         private void PerformTransaction(Wallet wallet, double transactionAmount)
         {
             wallet.PayMoneyForItems(transactionAmount);
+        }
+
+        private void DisplayPrices()
+        {
+            UI.LineBreak(2);
+            Console.WriteLine("STORE PRICES");
+            Console.WriteLine("============");
+            UI.LineBreak(1);
+            Console.WriteLine("Lemons: {0} per lemon", pricePerLemon.ToString("0.##"));
+            Console.WriteLine("Sugar Cubes: {0} per cube", pricePerSugarCube.ToString("0.##"));
+            Console.WriteLine("Ice Cubes: {0} per cube", pricePerIceCube.ToString("0.##"));
+            Console.WriteLine("Cups: {0} per cup", pricePerCup.ToString("0.##"));
+            UI.LineBreak(2);
         }
 
     }

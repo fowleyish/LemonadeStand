@@ -6,6 +6,7 @@ namespace LemonadeStand
     {
         static void Main(string[] args)
         {
+            Console.Clear();
             Game game = new Game();
             game.StartGame();
         }

@@ -13,11 +13,12 @@ namespace LemonadeStand
             Console.Clear();
             Console.WriteLine("Welcome to a new game of Lemonade Stand! \n");
             Console.WriteLine("How to play: \n" +
-                "1. Rules \n" +
-                "2. Rules \n" +
-                "3. Rules \n" +
-                "4. Rules \n" +
-                "5. Rules");
+                "1. Each round, you will see the weather and your current inventory before heading to the store to stock up. \n" +
+                "2. While at the store, you will purchase items to use for the day. \n" +
+                "   NOTE that Ice Cubes melt at the end of each day, so be careful not to buy too many! \n" +
+                "3. After buying products, you will set your recipe for the day. Be sure to set a reasonable asking price based on prior rounds. \n" +
+                "4. Immediately following setting the recipe, the day will run and you will be presented with a report of how you did. \n" +
+                "5. When the user completes 7 days, they will be presented with final profits and be asked if they would like to play again.") ;
             LineBreak(2);
             Console.Write("Press Enter to continue with Day 1");
             Console.ReadLine();
@@ -41,6 +42,7 @@ namespace LemonadeStand
             Console.WriteLine("Ice cubes: {0}", ice);
             Console.WriteLine("Cups: {0}", cups);
             Console.WriteLine("Available funds: ${0}", money.ToString("0.##"));
+            LineBreak(3);
         }
 
         public static int GetNumberOfItems(string itemsToGet)
@@ -49,14 +51,11 @@ namespace LemonadeStand
             int quantityOfItem = -1;
             while (!userInputIsAnInteger || quantityOfItem < 0)
             {
-                Console.WriteLine("STORE");
-                Console.WriteLine("=====");
                 LineBreak(1);
                 Console.WriteLine("How many " + itemsToGet + " would you like to buy?");
-                Console.Write("Please enter a positive integer (or 0 to cancel):");
+                Console.Write("Please enter a positive integer (or 0 to cancel): ");
 
                 userInputIsAnInteger = Int32.TryParse(Console.ReadLine(), out quantityOfItem);
-                Console.Clear();
             }
             return quantityOfItem;
         }
@@ -66,10 +65,11 @@ namespace LemonadeStand
             Console.Clear();
             Console.WriteLine("END OF DAY REPORT");
             Console.WriteLine("- Of {0} potential customers, you sold lemonade to {1} of them.", potentialCustomers, buyingCustomers);
-            Console.WriteLine("- You started today with ${0} and made ${1} in purchases from the store.", startingMoney.ToString("0.##"), moneyAfterPurchases.ToString("0.##"));
-            Console.WriteLine("- You made {0} in sales.", profits.ToString("0.##"));
+            Console.WriteLine("- You started today with ${0} and made ${1} in purchases from the store.", startingMoney.ToString("0.##"), (startingMoney - moneyAfterPurchases).ToString("0.##"));
+            Console.WriteLine("- You made ${0} in sales.", profits.ToString("0.##"));
             GetProfits(startingMoney, moneyAfterPurchases, profits);
             GetRecipeFeedback(recipeQuality);
+            Console.WriteLine("- All your ice melted!");
             Console.Write("Press Enter to continue");
             Console.ReadLine();
         }
@@ -115,6 +115,25 @@ namespace LemonadeStand
             for (int i = 0; i < num; i++)
             {
                 Console.WriteLine();
+            }
+        }
+
+        public static void EndGame(double money)
+        {
+            Console.Clear();
+            Console.WriteLine("And that's that! ");
+            Console.WriteLine("You started with $20 and finished with ${0}!", money.ToString("0.##"));
+            LineBreak(4);
+            Console.WriteLine("Would you like to play again? Enter 1 for YES or anything else to close the application: ");
+            string playAgain = Console.ReadLine();
+            if (playAgain == "1")
+            {
+                new Game();
+            }
+            else
+            {
+                Console.WriteLine("Thanks for playing!");
+                Environment.Exit(0);
             }
         }
 
