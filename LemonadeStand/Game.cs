@@ -45,33 +45,46 @@ namespace LemonadeStand
             UI.Welcome();
             while ( currentDay < 8 )
             {
-                UI.WelcomeToANewDay(currentDay);
+                UI.WelcomeToANewDay(currentDay, days[currentDay - 1].weather.temperature, days[currentDay - 1].weather.sky);
                 UI.DisplayInventory(player.inventory.lemons.Count, player.inventory.sugarCubes.Count, player.inventory.iceCubes.Count, player.inventory.cups.Count, player.wallet.Money);
                 store.SellItems(player);
+                UI.DisplayInventory(player.inventory.lemons.Count, player.inventory.sugarCubes.Count, player.inventory.iceCubes.Count, player.inventory.cups.Count, player.wallet.Money);
                 player.SetRecipe();
-                StartDay();
-                //ShowSales();
-                //CalculateSatisfaction();
-                //CalculateProfits();
-                //UI.EndDay();
+                SellLemonade();
+                UI.EndDay();
                 currentDay++;
             }
         }
 
-        public void StartDay()
+        public void SellLemonade()
         {
             List<Customer> potentialCustomers = days[currentDay].customers;
             double recipeQuality = player.recipe.recipeQuality;
+            double reasonablePrice = recipeQuality / 10;
+            int priceScore;
+            if (player.recipe.pricePerCup < reasonablePrice + 0.05)
+            {
+                priceScore = 2;
+            }
+            else
+            {
+                priceScore = 0;
+            }
             player.MakeNewPitcher();
             // Loop through each customer
             foreach (var customer in potentialCustomers)
             {
-                if (customer.plausibility + recipeQuality >= 5)
+                if (player.pitcher != null && player.inventory.cups.Count != 0)
                 {
-                    player.SellCup();
+                    if (customer.plausibility + recipeQuality + priceScore >= 6)
+                    {
+                        player.SellCup();
+                    }
+                    if (player.pitcher.cupsLeftInPitcher == 0) 
+                    {
+                        player.MakeNewPitcher();
+                    }
                 }
-                // check if there are any pitchers left.....
-                // add in somewhere a factor for whether the price is reasonable (on recipe class)
             }
         }
     }

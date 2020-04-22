@@ -23,7 +23,7 @@ namespace LemonadeStand
             amountOfIceCubes = SetQuantityPerPitcher("ICE CUBES");
             pricePerCup = SetPricePerCup();
             recipeQuality = GetRecipeQuality();
-            reasonablePrice = CalculateReasonablePrice(recipeQuality);
+            reasonablePrice = recipeQuality / 10;
         }
 
         // Member methods
@@ -70,11 +70,11 @@ namespace LemonadeStand
             return quality;
         }
 
-        public double CalculateReasonablePrice(int quality)
-        {
-            double reasonablePrice = quality / 10;
-            return reasonablePrice;
-        }
+        //public double CalculateReasonablePrice(int quality)
+        //{
+        //    double reasonablePrice = quality / 10;
+        //    return reasonablePrice;
+        //}
 
     }
 }

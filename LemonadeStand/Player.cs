@@ -32,9 +32,9 @@ namespace LemonadeStand
 
         public void MakeNewPitcher()
         {
-            if (inventory.lemons.Count >= recipe.amountOfLemons && 
+            if (inventory.lemons.Count >= recipe.amountOfLemons &&
                 inventory.sugarCubes.Count >= recipe.amountOfSugarCubes &&
-                inventory.iceCubes.Count >= recipe.amountOfIceCubes )
+                inventory.iceCubes.Count >= recipe.amountOfIceCubes)
             {
                 for (int i = 0; i < recipe.amountOfLemons; i++)
                 {
@@ -50,6 +50,10 @@ namespace LemonadeStand
                 }
                 pitcher = new Pitcher();
             }
+            else
+            {
+                pitcher = null;
+            }
         }
 
         public void SellCup()
@@ -58,6 +62,7 @@ namespace LemonadeStand
             {
                 pitcher.cupsLeftInPitcher--;
                 wallet.Money += recipe.pricePerCup;
+                inventory.cups.RemoveAt(0);
             }
             else
             {

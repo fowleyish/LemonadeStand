@@ -10,12 +10,18 @@ namespace LemonadeStand
         // Member variables
         public Weather weather;
         public List<Customer> customers;
+        public double startingMoney;
+        public double moneyMade;
+        public int buyingCustomers;
 
         // Constructor
         public Day()
         {
             weather = new Weather();
             customers = GetCustomers();
+            startingMoney = 0;
+            moneyMade = 0;
+            buyingCustomers = 0;
         }
 
         // Member methods
